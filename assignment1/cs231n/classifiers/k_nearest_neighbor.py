@@ -123,12 +123,12 @@ class KNearestNeighbor(object):
     # HINT: Try to formulate the l2 distance using matrix multiplication    #
     #       and two broadcast sums.                                         #
     #########################################################################
-    #       ############ Out of memory #################
+    # ############ Out of memory #################
     # dists = np.sum(X ** 2,axis=1) \
     #         + np.tile(np.sum(self.X_train**2,axis = 1).T,(500,5000)) \
     #         - 2 * X.dot(self.X_train.T)
 
-    #       ####### Σ(a - b)**2 != [Σ(a - b)] ** 2 #####
+    # ####### Σ(a - b)**2 != [Σ(a - b)] ** 2 #####
     # t = np.tile(X, (num_test, 1, 1)).swapaxes(0, 1)
     # dists = np.sum(t.dot(-self.X_train.T) ** 2, axis=1)
     #       ####### Code of solution from github, out of memory, 
@@ -140,7 +140,7 @@ class KNearestNeighbor(object):
     # # print T.shape,F.shape,FT.shape,X.shape,self.X_train.shape
     # dists = T + F - 2 * FT
 
-    #        ########### Solution to reduce memory use   ##############
+    # ########### Solution to reduce memory use   ##############
     X2 = np.sum(X ** 2, axis=1).reshape(-1, 1)
     X_train2 = np.sum(self.X_train ** 2, axis=1).reshape(-1, 1).T
     X_X_train = X.dot(self.X_train.T)
